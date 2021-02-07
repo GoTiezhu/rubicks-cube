@@ -24,4 +24,4 @@ jobs:
       - name: Login to registry
         run: docker login --username=${{ secrets.ALIYUN_REGISTRY_USERNAME }} ${{ secrets.ALIYUN_REGISTRY_ADDR }} -p ${{ secrets.ALIYUN_REGISTRY_PASSWD }}
       - name: Publish Image to Aliyun Registry
-        run: docker push ${{ secrets.DOCKER_REPOSITORY }}:latest
+        run: docker push ${{ secrets.ALIYUN_REGISTRY_ADDR }}/litiezhu/${{ secrets.DOCKER_REPOSITORY }}:latest
