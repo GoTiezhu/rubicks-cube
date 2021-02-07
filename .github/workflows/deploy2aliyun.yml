@@ -26,4 +26,4 @@ jobs:
       - name: Tag it
         run: docker tag ${{ secrets.DOCKER_REPOSITORY }}:latest ${{ secrets.ALIYUN_REGISTRY_ADDR }}/litiezhu/${{ secrets.DOCKER_REPOSITORY }}:latest
       - name: Publish Image to Aliyun Registry
-        run: docker push ${{ secrets.DOCKER_REPOSITORY }}:latest ${{ secrets.ALIYUN_REGISTRY_ADDR }}/litiezhu/${{ secrets.DOCKER_REPOSITORY }}:latest
+        run: docker push ${{ secrets.ALIYUN_REGISTRY_ADDR }}/litiezhu/${{ secrets.DOCKER_REPOSITORY }}:latest
