@@ -1,0 +1,28 @@
+name: Deploy to Aliyun ECS
+on:
+  push:
+    branchs:
+      - master
+  pull_request:
+    branchs:
+      - master
+
+jobs:
+  build:
+    enviroment: secrets
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+      - name: Build Docker Image
+        run: docker build -t ${{ secrets.DOCKER_REPOSITORY }}:latest .
+      - name: Login to registry
+        run: docker login --username=${{ secrets.ALIYUN_REGISTRY_USERNAME }} ${{ secrets.ALIYUN_REGISTRY_ADDR }} -p ${{ secrets.ALIYUN_REGISTRY_PASSWD }}
+      - name: Publish Image to Aliyun Registry
+        run: docker push ${{ DOCKER_REPOSITORY }}:latest
