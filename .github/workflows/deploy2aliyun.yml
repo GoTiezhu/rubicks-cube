@@ -9,9 +9,8 @@ on:
 
 jobs:
   build:
-    enviroment: secrets
     runs-on: ubuntu-latest
-
+    enviroment: secrets
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
