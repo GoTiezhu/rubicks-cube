@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: secrets
+    environment: aliyun
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -24,4 +24,4 @@ jobs:
       - name: Login to registry
         run: docker login --username=${{ secrets.ALIYUN_REGISTRY_USERNAME }} ${{ secrets.ALIYUN_REGISTRY_ADDR }} -p ${{ secrets.ALIYUN_REGISTRY_PASSWD }}
       - name: Publish Image to Aliyun Registry
-        run: docker push ${{ DOCKER_REPOSITORY }}:latest
+        run: docker push ${{ secrets.DOCKER_REPOSITORY }}:latest
