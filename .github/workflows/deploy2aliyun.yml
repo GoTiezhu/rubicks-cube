@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: izuf6dwoxmdiobk22ryhu4z
     environment: aliyun
     steps:
       - uses: actions/checkout@v2
