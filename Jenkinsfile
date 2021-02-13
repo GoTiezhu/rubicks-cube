@@ -3,6 +3,7 @@ pipeline {
   stages {
     stage('build') {
       steps {
+        sh 'mvn package'
         sh 'docker build -t litiezhu/rubicks-cube .'
       }
     }
@@ -15,7 +16,7 @@ pipeline {
 
     stage('deploy') {
       steps {
-        sh '''docker run \\ 
+        sh '''docker run \\ï¿½
 --rm \\
 -d \\
 --name cube-service \\
