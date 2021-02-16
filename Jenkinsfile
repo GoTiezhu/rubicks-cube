@@ -1,29 +1,21 @@
 pipeline {
-  agent any
-  stages {
-    stage('build') {
-      steps {
-        sh 'mvn package'
-        sh 'docker build -t litiezhu/rubicks-cube .'
-      }
+    agent {
+        docker {
+            image 'maven:3-jdk-11'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn -B -DskipTests clean package'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'echo Testing'
+            }
+        }
     }
 
-    stage('test') {
-      steps {
-        echo 'testing'
-      }
-    }
-
-    stage('deploy') {
-      steps {
-        sh '''docker run \\�
---rm \\
--d \\
---name cube-service \\
--p 9597:9596 \\
-litiezhu/rubicks-cube'''
-      }
-    }
-
-  }
 }
