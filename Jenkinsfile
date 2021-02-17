@@ -17,7 +17,9 @@ pipeline {
             }
         }
         stage('Build Image') {
-            sh 'docker built -t litiezhu/rubicks-cube:latest .'
+            steps {
+                sh 'docker built -t litiezhu/rubicks-cube:latest .'
+            }
         }
     }
 
