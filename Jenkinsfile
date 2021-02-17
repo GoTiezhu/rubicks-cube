@@ -16,6 +16,9 @@ pipeline {
                 sh 'echo Testing'
             }
         }
+        stage('Build Image') {
+            sh 'docker built -t litiezhu/rubicks-cube:latest .'
+        }
     }
 
 }
